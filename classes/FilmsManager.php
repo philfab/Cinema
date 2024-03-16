@@ -2,7 +2,6 @@
 final class FilmsManager
 {
     private static $films = []; // liste des films
-    private static $result = "";
 
     public static function addFilm(Film $film) // ajoute un film a la liste
     {
@@ -66,29 +65,29 @@ final class FilmsManager
             }
         }
         $nombreDeFilms = count($nomsFilms);
-        $resultat = "Le genre $designation est associé à $nombreDeFilms film(s) : " . implode(", ", $nomsFilms) . ".<br>";
-        return $resultat;
+        $result = "Le genre $designation est associé à $nombreDeFilms film(s) : " . implode(", ", $nomsFilms) . ".<br>";
+        return $result;
     }
 
     public static function listerFilmographieActeur(string $nomActeur): string // renvoie tous les films d'un acteur
     {
         $id_acteur = Indexation::tabActeurs[$nomActeur];
-        $resultat = "Filmographie de $nomActeur : ";
+        $result = "Filmographie de $nomActeur : ";
         $films = [];
         foreach (self::getAllCastings() as $casting) {
             if ($casting->getActeur()->getIdActeur() == $id_acteur) {
                 $films[] = $casting->getFilm()->getTitre();
             }
         }
-        $resultat .= implode(", ", $films) . ".<br>";
+        $result .= implode(", ", $films) . ".<br>";
 
-        return $resultat;
+        return $result;
     }
 
     public static function listerFilmographieRealisateur(string $nomRealisateur): string // renvoie tous les films d'un realisateur
     {
         $id_realisateur = Indexation::tabRealisateurs[$nomRealisateur];
-        $resultat = "Filmographie du réalisateur $nomRealisateur : ";
+        $result = "Filmographie du réalisateur $nomRealisateur : ";
         $films = [];
         foreach (self::$films as $film) {
             if ($film->getRealisateur()->getIdRealisateur() == $id_realisateur) {
@@ -98,8 +97,8 @@ final class FilmsManager
                 }
             }
         }
-        $resultat .= implode(", ", $films) . ".<br>";
+        $result .= implode(", ", $films) . ".<br>";
 
-        return $resultat;
+        return $result;
     }
 }
