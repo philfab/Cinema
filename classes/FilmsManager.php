@@ -40,8 +40,7 @@ final class FilmsManager
         foreach (self::$films as $film) {
             if ($film->getIdFilm() == $id_film) {
                 $result .= "Dans le film " . $film->getTitre() . ", ";
-                $castings = $film->getCastings();
-                foreach ($castings as $casting) {
+                foreach ($film->getCastings() as $casting) {
                     $role = $casting->getRole()->getNomPersonnage();
                     $acteur = $casting->getActeur()->getNomComplet();
 

@@ -10,8 +10,4 @@ class Acteur extends Personne
     {
         return parent::getIdPersonne();
     }
-
-    public function getNomComplet() :string { 
-        return parent::getNomComplet();
-    }
 }
