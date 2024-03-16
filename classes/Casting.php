@@ -1,18 +1,15 @@
 <?php
-class Casting {
-    private int $id_casting;
-    private Film $film;
-    private array $acteurs;
-    private array $roles;
+class Casting
+{
+    public Film $film;
+    public Role $role;
+    public Acteur $acteur;
 
-    public function __construct(Film $film, array $acteurs, array $roles){
-        $this->id_casting = IDGenerator::getUniqueId();
+    public function __construct(Film $film, Acteur $acteur, Role $role)
+    {
         $this->film = $film;
-
-    }
-
-    public function getIdCasting(): int{
-        return $this->id_casting;
+        $this->acteur = $acteur;
+        $this->role = $role;
     }
 
     public function getFilm(): Film
@@ -20,38 +17,13 @@ class Casting {
         return $this->film;
     }
 
-    public function setFilm(Film $film)
+    public function getActeur(): Acteur
     {
-        $this->$film = $film;
+        return $this->acteur;
     }
 
-    public function getActeurs(): array
+    public function getRole(): Role
     {
-        return $this->acteurs;
-    }
-
-    public function setActeur(Acteur $acteur)
-    {
-        $this->acteurs[] = $acteur;
-    }
-
-    public function getRoles(): array
-    {
-        return $this->roles;
-    }
-
-    public function setRole(Role $role)
-    {
-        $this->roles[] = $role;
-    }
-
-    public function listerCasting(): string
-    {
-        $resultat = "";
-        foreach ($this->acteurs as $acteur) {
-            $resultat .= "Dans le film " . $this->film->getTitre() . ", ";
-            $resultat .= $this->roles[0]->getNomRole() . " a été incarné par " . $acteur->getNomPersonne() . ". ";
-        }
-        return $resultat;
+        return $this->role;
     }
 }

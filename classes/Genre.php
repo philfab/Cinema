@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Genre
 {
   private int $id_genre;
@@ -6,7 +6,17 @@ class Genre
 
   public function __construct(string $designation)
   {
-    $this->id_genre = IDGenerator::getUniqueId();
+    $this->id_genre = Indexation::tabGenres[$designation];
     $this->designation = $designation;
+  }
+
+  public function getIdGenre(): int
+  {
+    return $this->id_genre;
+  }
+
+  public function getDesignation(): string
+  {
+    return $this->designation;
   }
 }

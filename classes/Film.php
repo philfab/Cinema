@@ -1,5 +1,6 @@
-<?php 
-class Film {
+<?php
+class Film
+{
     private int $id_film;
     private string $titre;
     private DateTime $dateSortie;
@@ -7,25 +8,32 @@ class Film {
     private ?string $synopsis;
     private Genre $genre;
     private Realisateur $realisateur;
-    private Casting $casting; 
+    private $castings = [];
 
-    public function __construct(string $titre, string $dateSortie, int $duree, ?string $synopsis, Genre $genre, Realisateur $realisateur,Casting $Casting)
+    public function __construct(string $titre, string $dateSortie, int $duree, ?string $synopsis, Genre $genre, Realisateur $realisateur)
     {
-        $this->id_film = IDGenerator::getUniqueId();
+        $this->id_film = Indexation::tabFilms[$titre];
         $this->titre = $titre;
         $this->dateSortie =  new DateTime($dateSortie);
         $this->duree = $duree;
         $this->synopsis = $synopsis;
         $this->genre = $genre;
         $this->realisateur = $realisateur;
-        $this->realisateur->ajouterFilm($this);//ajoute le film dans la liste des films du réalisateur
-        $this->casting = $Casting;
-
     }
 
     public function getIdFilm(): int
     {
         return $this->id_film;
+    }
+
+    public function addCasting(Casting $casting)
+    {
+        $this->castings[] = $casting; //ajoute un casting a la liste
+    }
+
+    public function getCastings(): array
+    {
+        return $this->castings;
     }
 
     public function getTitre(): string
@@ -43,7 +51,7 @@ class Film {
         return $this->duree;
     }
 
-    public function getSynopsis(): ?string
+    public function getSynopsis(): ?string // peut être null
     {
         return $this->synopsis;
     }
@@ -57,44 +65,4 @@ class Film {
     {
         return $this->realisateur;
     }
-
-    public function setTitre(string $titre)
-    {
-        $this->titre = $titre;
-    }
-
-    public function setDateSortie(string $dateSortie)
-    {
-        $this->dateSortie = new DateTime($dateSortie);
-    }
-
-    public function setDuree(int $duree)
-    {
-        $this->duree = $duree;
-    }
-
-    public function setSynopsis(?string $synopsis)
-    {
-        $this->synopsis = $synopsis;
-    }
-
-    public function setGenre(Genre $genre)
-    {
-        $this->genre = $genre;
-    }
-
-    public function setRealisateur(Realisateur $realisateur)
-    {
-        $this->realisateur = $realisateur;
-    }
-
-    public function listerCasting(): string
-    {
-        $resultat = "";
-        foreach ($this->casting as $cast) {
-           
-        }
-        return $resultat;
-    }
 }
-?>

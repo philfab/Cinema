@@ -1,5 +1,5 @@
 <?php
-class Personne
+abstract class Personne
 {
     protected int $id_personne;
     protected string $nom;
@@ -7,11 +7,11 @@ class Personne
     protected string $sexe;
     protected DateTime $dateNaissance;
 
-    public function __construct(string $nom, string $prenom, string $sexe, string $dateNaissance)
+    public function __construct(int $id_personne, string $prenom, string $nom, string $sexe, string $dateNaissance)
     {
-        $this->id_personne = IDGenerator::getUniqueId();
-        $this->nom = $nom;
+        $this->id_personne = $id_personne;
         $this->prenom = $prenom;
+        $this->nom = $nom;
         $this->sexe = $sexe;
         $this->dateNaissance = new DateTime($dateNaissance);
     }
@@ -41,27 +41,7 @@ class Personne
         return $this->dateNaissance->format('Y-m-d');
     }
 
-    public function setDateNaissance(string $dateNaissance): void
-    {
-        $this->dateNaissance = new DateTime($dateNaissance);
-    }
-
-    public function setNom(string $nom): void
-    {
-        $this->nom = $nom;
-    }
-
-    public function setPrenom(string $prenom): void
-    {
-        $this->prenom = $prenom;
-    }
-
-    public function setSexe(string $sexe): void
-    {
-        $this->sexe = $sexe;
-    }
-
-    public function getNomComplet(): string
+    public function getNomComplet(): string // renvoie le nom complet    
     {
         return $this->prenom . ' ' . $this->nom;
     }

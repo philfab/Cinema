@@ -1,36 +1,13 @@
 <?php
-    class Realisateur extends Personne
+class Realisateur extends Personne
+{
+    public function __construct(string $prenom, string $nom, string $sexe, string $dateNaissance)
     {
-        private array $films = [];
-    
-        public function __construct(string $nom, string $prenom, string $sexe, string $dateNaissance)
-        {
-            parent::__construct($nom, $prenom, $sexe, $dateNaissance);
-        }
-    
-        public function getIdRealisateur(): int
-        {
-            return parent::getIdPersonne();
-        }
-    
-        public function getFilms(): array
-        {
-            return $this->films;
-        }
-    
-        public function ajouterFilm(Film $film): void
-        {
-            $this->films[] = $film;
-        }
-    
-        public function listerFilms(): string
-        {
-            $resultat = "";
-            foreach ($this->films as $film) {
-                $resultat .= $film->getTitre() . "\n";
-            }
-            return $resultat;
-        }
+        parent::__construct(Indexation::tabRealisateurs[$prenom . ' ' . $nom], $prenom, $nom, $sexe, $dateNaissance);
+    }
 
-
+    public function getIdRealisateur()
+    {
+        return parent::getIdPersonne();
+    }
 }
