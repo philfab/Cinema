@@ -22,8 +22,8 @@ final class FilmsManager
         $id_role = Indexation::tabRoles[$nomPersonnage];
         $nomsActeurs = [];
         foreach (self::getAllCastings() as $casting) {
-            if ($casting->role->getIdRole() == $id_role) {
-                $nomCompletActeur = $casting->acteur->getNomComplet();
+            if ($casting->getRole()->getIdRole() == $id_role) {
+                $nomCompletActeur = $casting->getActeur()->getNomComplet();
                 if (!in_array($nomCompletActeur, $nomsActeurs)) {
                     $nomsActeurs[] = $nomCompletActeur;
                 }
