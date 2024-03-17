@@ -24,7 +24,7 @@ $casting = new Casting($film, new Acteur("John", "Travolta", "M", "1959-02-18"),
 $film->addCasting($casting);
 FilmsManager::addFilm($film);
 
-echo FilmsManager::listerCastingParFilm($film->getIdFilm());
+echo FilmsManager::listerCastingParFilm("Pulp Fiction");
 echo FilmsManager::listerFilmographieActeur("Bruce Willis");
 echo FilmsManager::listerFilmographieRealisateur("Quentin Tarantino");
 echo FilmsManager::listerActeursParRole("Vincent Vega");

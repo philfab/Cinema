@@ -34,8 +34,9 @@ final class FilmsManager
         return $resultat;
     }
 
-    public static function listerCastingParFilm(int $id_film): string // renvoie le casting d'un film
+    public static function listerCastingParFilm(string $nomFilm): string // renvoie le casting d'un film
     {
+        $id_film = Indexation::tabFilms[$nomFilm];
         $result = "";
         foreach (self::$films as $film) {
             if ($film->getIdFilm() == $id_film) {
