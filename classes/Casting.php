@@ -1,9 +1,9 @@
 <?php
 class Casting
 {
-    public Film $film;
-    public Role $role;
-    public Acteur $acteur;
+    private Film $film;
+    private Role $role;
+    private Acteur $acteur;
 
     public function __construct(Film $film, Acteur $acteur, Role $role)
     {
