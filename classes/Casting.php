@@ -11,6 +11,8 @@ class Casting
         $this->acteur = $acteur;
         $this->role = $role;
         $film->addCasting($this);
+        $acteur->addCasting($this);
+        $role->addCasting($this);
     }
 
     public function getFilm(): Film

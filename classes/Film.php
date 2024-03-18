@@ -19,6 +19,7 @@ class Film
         $this->synopsis = $synopsis;
         $this->genre = $genre;
         $this->realisateur = $realisateur;
+        $realisateur->addFilm(($this));
     }
 
     public function getIdFilm(): int
@@ -65,4 +66,18 @@ class Film
     {
         return $this->realisateur;
     }
+
+    public function listerCasting()
+    {
+        $result = "Dans le film " . $this->getTitre() . ", ";
+        $descriptions = [];
+        foreach ($this->castings as $casting) {
+            $role = $casting->getRole()->getNomPersonnage();
+            $acteur = $casting->getActeur()->getNomComplet();
+            $descriptions[] = "$role a été incarné par $acteur";
+        }
+
+        $result .= implode(", ", $descriptions) . ".<br>";
+        return $result;
+    }     
 }
