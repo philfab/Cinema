@@ -19,9 +19,7 @@ spl_autoload_register(function ($class) {
 $realisateur = new Realisateur("Quentin", "Tarantino", "M", "1963-03-27");
 $film = new Film("Pulp Fiction", "1994-01-01", 153, "", new Genre("Drame"), $realisateur);
 $casting = new Casting($film, new Acteur("Bruce", "Willis", "M", "1955-06-19"), new Role("Butch Coolidge"));
-$film->addCasting($casting);
 $casting = new Casting($film, new Acteur("John", "Travolta", "M", "1959-02-18"), new Role("Vincent Vega"));
-$film->addCasting($casting);
 FilmsManager::addFilm($film);
 
 echo FilmsManager::listerCastingParFilm("Pulp Fiction");
