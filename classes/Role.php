@@ -25,4 +25,15 @@ class Role
     {
         return $this->nomPersonnage;
     }
+
+    public function listerActeursParRole()
+    {
+        $nomsActeurs = [];
+        foreach ($this->castings as $casting) 
+                $nomsActeurs[] = $casting->getActeur()->getNomComplet();
+
+        $resultat = "Les acteurs ayant joué le rôle de $this->nomPersonnage : " . implode(", ", $nomsActeurs) . ".<br>";
+        return $resultat;
+    }
+    
 }

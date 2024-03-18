@@ -14,18 +14,13 @@ class Acteur extends Personne
          $this->castings[] = $casting; //ajoute un casting a la liste
     }
 
-    public function getIdActeur()
-    {
-        return parent::getIdPersonne();
-    }
-
     public function listerFilmographie()
     {
         $result = "Filmographie de " . $this->getNomComplet() . " : ";
         $films = [];
-        foreach ($this->castings as $casting) {
+        foreach ($this->castings as $casting) 
             $films[] = $casting->getFilm()->getTitre();
-        }
+        
         $result .= implode(", ", $films) . ".<br>";
         return $result;
     }

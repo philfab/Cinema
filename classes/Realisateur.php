@@ -8,17 +8,18 @@ class Realisateur extends Personne
         parent::__construct(Indexation::tabRealisateurs[$prenom . ' ' . $nom], $prenom, $nom, $sexe, $dateNaissance);
     }
 
-    public function getIdRealisateur()
-    {
-        return parent::getIdPersonne();
-    }
-
     public function addFilm(Film $film)
     {
         $this->films[] = $film;
     }
 
     public function listerFilms(){
-        return $this->films;
+        $result = "Filmographie du réalisateur " . parent::getNomComplet(). " : ";
+        $descriptions = [];
+        foreach ($this->films as $film) 
+                $result .= $film->getTitre();
+
+        $result .= implode(", ", $descriptions) . ".<br>";
+        return $result;
     }
 }

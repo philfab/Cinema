@@ -18,8 +18,9 @@ class Film
         $this->duree = $duree;
         $this->synopsis = $synopsis;
         $this->genre = $genre;
+        $this->genre->addFilm($this);
         $this->realisateur = $realisateur;
-        $realisateur->addFilm(($this));
+        $realisateur->addFilm($this);
     }
 
     public function getIdFilm(): int
